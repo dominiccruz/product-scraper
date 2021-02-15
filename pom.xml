@@ -18,6 +18,7 @@
 
 	<modules>
 		<module>product-scraper-core</module>
+		<module>product-scraper-schema</module>
 	</modules>
 
 </project>
