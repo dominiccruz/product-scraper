@@ -16,7 +16,7 @@ public class ProductToProductDtoConverter {
             if (product.getProductNutrition() != null) {
                 nutrition = product.getProductNutrition().getNutrition();
             }
-            productResult = Optional.of(new ProductDto(title, nutrition, product.getProductPrice().getPrice(), description));
+            productResult = Optional.of(new ProductDto(title, nutrition, product.getProductPrice().getValue(), description));
         }
         return productResult;
     }

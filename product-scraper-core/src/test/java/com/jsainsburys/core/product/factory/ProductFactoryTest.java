@@ -17,18 +17,18 @@ public class ProductFactoryTest {
         //Arrange
         ProductFactory productFactory = new ProductFactory();
         ProductTitle mockProductTitle = mock(ProductTitle.class);
-        ProductPrice mockProductPrice = mock(ProductPrice.class);
+        Money mockMoney = mock(Money.class);
         ProductDescription mockProductDescription = mock(ProductDescription.class);
         ProductNutrition mockProductNutrition = mock(ProductNutrition.class);
 
         //Act
-        Optional<Product> newProduct = productFactory.createProduct(mockProductTitle, mockProductPrice, mockProductDescription, mockProductNutrition);
+        Optional<Product> newProduct = productFactory.createProduct(mockProductTitle, mockMoney, mockProductDescription, mockProductNutrition);
 
         //Assert
         assertThat(newProduct.isPresent(), is(true));
         Product product = newProduct.get();
         assertThat(product.getProductTitle(), is(mockProductTitle));
-        assertThat(product.getProductPrice(), is(mockProductPrice));
+        assertThat(product.getProductPrice(), is(mockMoney));
         assertThat(product.getProductDescription(), is(mockProductDescription));
         assertThat(product.getProductNutrition(), is(mockProductNutrition));
     }
@@ -38,12 +38,12 @@ public class ProductFactoryTest {
         //Arrange
         ProductFactory productFactory = new ProductFactory();
         ProductTitle mockProductTitle = null;
-        ProductPrice mockProductPrice = mock(ProductPrice.class);
+        Money mockMoney = mock(Money.class);
         ProductDescription mockProductDescription = mock(ProductDescription.class);
         ProductNutrition mockProductNutrition = mock(ProductNutrition.class);
 
         //Act
-        Optional<Product> newProduct = productFactory.createProduct(mockProductTitle, mockProductPrice, mockProductDescription, mockProductNutrition);
+        Optional<Product> newProduct = productFactory.createProduct(mockProductTitle, mockMoney, mockProductDescription, mockProductNutrition);
 
         //Assert
         assertThat(newProduct.isPresent(), is(false));
@@ -54,12 +54,12 @@ public class ProductFactoryTest {
         //Arrange
         ProductFactory productFactory = new ProductFactory();
         ProductTitle mockProductTitle = mock(ProductTitle.class);
-        ProductPrice mockProductPrice = null;
+        Money mockMoney = null;
         ProductDescription mockProductDescription = mock(ProductDescription.class);
         ProductNutrition mockProductNutrition = mock(ProductNutrition.class);
 
         //Act
-        Optional<Product> newProduct = productFactory.createProduct(mockProductTitle, mockProductPrice, mockProductDescription, mockProductNutrition);
+        Optional<Product> newProduct = productFactory.createProduct(mockProductTitle, mockMoney, mockProductDescription, mockProductNutrition);
 
         //Assert
         assertThat(newProduct.isPresent(), is(false));

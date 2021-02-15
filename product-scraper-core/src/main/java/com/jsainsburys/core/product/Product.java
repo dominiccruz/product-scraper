@@ -2,21 +2,21 @@ package com.jsainsburys.core.product;
 
 import com.jsainsburys.core.product.detail.ProductDescription;
 import com.jsainsburys.core.product.detail.ProductNutrition;
-import com.jsainsburys.core.product.detail.ProductPrice;
+import com.jsainsburys.core.product.detail.Money;
 import com.jsainsburys.core.product.detail.ProductTitle;
 
 public class Product {
     private final ProductTitle productTitle;
-    private final ProductPrice productPrice;
+    private final Money money;
     private final ProductDescription productDescription;
     private final ProductNutrition productNutrition;
 
     public Product(ProductTitle productTitle,
-                   ProductPrice productPrice,
+                   Money money,
                    ProductDescription productDescription,
                    ProductNutrition productNutrition) {
         this.productTitle = productTitle;
-        this.productPrice = productPrice;
+        this.money = money;
         this.productDescription = productDescription;
         this.productNutrition = productNutrition;
     }
@@ -25,8 +25,8 @@ public class Product {
         return productTitle;
     }
 
-    public ProductPrice getProductPrice() {
-        return productPrice;
+    public Money getProductPrice() {
+        return money;
     }
 
     public ProductDescription getProductDescription() {

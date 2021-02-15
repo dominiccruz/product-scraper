@@ -3,7 +3,7 @@ package com.jsainsburys.core.product.factory;
 import com.jsainsburys.core.product.Product;
 import com.jsainsburys.core.product.detail.ProductDescription;
 import com.jsainsburys.core.product.detail.ProductNutrition;
-import com.jsainsburys.core.product.detail.ProductPrice;
+import com.jsainsburys.core.product.detail.Money;
 import com.jsainsburys.core.product.detail.ProductTitle;
 
 import java.util.Optional;
@@ -22,12 +22,12 @@ public class ProductFactory {
      * Empty if Product Title or Product Price or Product Description are NULL
      */
     public Optional<Product> createProduct(ProductTitle productTitle,
-                                           ProductPrice productPrice,
+                                           Money money,
                                            ProductDescription productDescription,
                                            ProductNutrition productNutrition) {
         Optional<Product> product = Optional.empty();
-        if(productTitle != null && productPrice != null && productDescription !=null) {
-            product = Optional.of(new Product(productTitle, productPrice, productDescription, productNutrition));
+        if(productTitle != null && money != null && productDescription !=null) {
+            product = Optional.of(new Product(productTitle, money, productDescription, productNutrition));
         }
         return product;
     }
