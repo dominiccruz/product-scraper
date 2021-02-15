@@ -6,12 +6,12 @@
 
     <parent>
         <groupId>com.jsainsburys</groupId>
-        <artifactId>product-scraper-service</artifactId>
+        <artifactId>product-scraper</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>com.jsainsburys</groupId>
-    <artifactId>product-scraper-service-core</artifactId>
+    <artifactId>product-scraper-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
