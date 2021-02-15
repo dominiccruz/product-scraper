@@ -17,7 +17,7 @@ import java.util.List;
 public class ProductListDto {
 
     @JsonProperty("results")
-    private List<ProductDto> results = new ArrayList();
+    private List<ProductDto> results = new ArrayList<>();
 
     @JsonProperty("total")
     private TotalDto total;
