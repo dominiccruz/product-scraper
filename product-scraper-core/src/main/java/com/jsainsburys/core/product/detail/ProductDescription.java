@@ -1,7 +1,9 @@
 package com.jsainsburys.core.product.detail;
 
+import lombok.Getter;
 import org.springframework.util.Assert;
 
+@Getter
 public class ProductDescription {
 
     private final String description;
@@ -14,9 +16,5 @@ public class ProductDescription {
     public ProductDescription(String description) {
         Assert.hasText(description, "Product Description cannot be NULL");
         this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
     }
 }

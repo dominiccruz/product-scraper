@@ -1,7 +1,9 @@
 package com.jsainsburys.core.product.detail;
 
+import lombok.Getter;
 import org.springframework.util.Assert;
 
+@Getter
 public class ProductTitle {
     private final String title;
 
@@ -10,7 +12,4 @@ public class ProductTitle {
         this.title = title;
     }
 
-    public String getTitle() {
-        return title;
-    }
 }

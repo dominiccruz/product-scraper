@@ -1,5 +1,8 @@
 package com.jsainsburys.core.product.detail;
 
+import lombok.Getter;
+
+@Getter
 public class ProductNutrition {
 
     private final Integer nutrition;
@@ -18,7 +21,4 @@ public class ProductNutrition {
         this.nutrition = Integer.parseInt(nutrition);
     }
 
-    public Integer getNutrition() {
-        return nutrition;
-    }
 }
