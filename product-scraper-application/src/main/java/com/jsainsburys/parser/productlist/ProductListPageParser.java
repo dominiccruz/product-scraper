@@ -32,7 +32,7 @@ public class ProductListPageParser extends JSoupParser {
 
         return productUrlElements
                 .stream()
-                .map(productUrlElement -> productUrlElement.attr("href"))
+                .map(productUrlElement -> productUrlElement.attr("abs:href"))
                 .collect(Collectors.toList());
     }
 }
