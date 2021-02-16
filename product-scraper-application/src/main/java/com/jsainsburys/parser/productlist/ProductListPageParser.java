@@ -25,7 +25,7 @@ public class ProductListPageParser extends JSoupParser {
         this.productListPageSelector = productListPageSelector;
     }
 
-    public List<String> parse(String url) throws IOException {
+    public List<String> parse(String url) throws Exception {
         Assert.notNull(url, "Product List Page Url Cannot be NULL");
         Document productListPage = getDocument(url);
         Elements productUrlElements = productListPage.select(productListPageSelector);

@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 public class ProductDetailPageParserTest {
 
     @Test
-    public void titleAndPriceParserAreCalled() throws IOException {
+    public void titleAndPriceParserAreCalled() throws Exception {
         //Arrange
         Document document = mock(Document.class);
         Source source = mock(Source.class);

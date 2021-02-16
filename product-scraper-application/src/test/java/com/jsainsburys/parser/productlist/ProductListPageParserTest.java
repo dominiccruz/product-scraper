@@ -31,7 +31,7 @@ public class ProductListPageParserTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void throwException_ifUrlNull() throws IOException {
+    public void throwException_ifUrlNull() throws Exception {
         //Arrange
         Source source = mock(Source.class);
         ProductListPageParser productListPageParser = new ProductListPageParser(source, "selector");

@@ -33,7 +33,7 @@ public class ProductDetailPageParser extends JSoupParser {
         this.productDetailPageNutritionParser = productDetailPageNutritionParser;
     }
 
-    public Product parse(String url) throws IOException {
+    public Product parse(String url) throws Exception {
         Document document = getDocument(url);
         Optional<ProductTitle> productTitle = productDetailPageTitleParser.getProductTitle(document);
         Optional<Money> productPrice = productDetailPagePriceParser.getProductPrice(document);
