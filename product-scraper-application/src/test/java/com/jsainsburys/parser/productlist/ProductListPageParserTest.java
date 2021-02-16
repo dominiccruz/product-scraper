@@ -28,8 +28,6 @@ public class ProductListPageParserTest {
 
         //Assert
         assertThat(parse.size(), is(14));
-
-        assertThat(parse.get(0), is("testData/sainsbury/html/valid/validProduct1.html"));
     }
 
     @Test(expected = IllegalArgumentException.class)

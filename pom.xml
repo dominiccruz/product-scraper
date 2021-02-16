@@ -21,6 +21,7 @@
 		<module>product-scraper-core</module>
 		<module>product-scraper-schema</module>
 		<module>product-scraper-application</module>
+		<module>product-scraper-standalone</module>
 	</modules>
 
 </project>
