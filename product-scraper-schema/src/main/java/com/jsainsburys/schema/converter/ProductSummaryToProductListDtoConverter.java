@@ -5,18 +5,16 @@ import com.jsainsburys.core.product.summary.ProductSummary;
 import com.jsainsburys.schema.ProductDto;
 import com.jsainsburys.schema.ProductListDto;
 import com.jsainsburys.schema.TotalDto;
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 public class ProductSummaryToProductListDtoConverter {
 
-    private ProductToProductDtoConverter productToProductDtoConverter;
-
-    public ProductSummaryToProductListDtoConverter(ProductToProductDtoConverter productToProductDtoConverter) {
-        this.productToProductDtoConverter = productToProductDtoConverter;
-    }
+    private final ProductToProductDtoConverter productToProductDtoConverter;
 
     public Optional<ProductListDto> convert(ProductSummary productSummary) {
         Optional<ProductListDto> productListDto = Optional.empty();
