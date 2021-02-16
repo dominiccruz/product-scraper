@@ -1,10 +1,13 @@
 package com.jsainsburys.parser.productsdetailpage;
 
+import com.jsainsburys.core.product.detail.Money;
+import com.jsainsburys.core.product.detail.ProductTitle;
 import com.jsainsburys.parser.source.Source;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
@@ -13,11 +16,15 @@ public class ProductDetailPageParserTest {
     @Test
     public void titleAndPriceParserAreCalled() throws IOException {
         //Arrange
+        Document document = mock(Document.class);
         Source source = mock(Source.class);
-        when(source.load("url")).thenReturn(mock(Document.class));
+        when(source.load("url")).thenReturn(document);
 
         ProductDetailPageTitleParser productDetailPageTitleParser = mock(ProductDetailPageTitleParser.class);
+        when(productDetailPageTitleParser.getProductTitle(document)).thenReturn(Optional.of(mock(ProductTitle.class)));
+
         ProductDetailPagePriceParser productDetailPagePriceParser = mock(ProductDetailPagePriceParser.class);
+        when(productDetailPagePriceParser.getProductPrice(document)).thenReturn(Optional.of(mock(Money.class)));
 
         ProductDetailPageParser productDetailPageParser = new ProductDetailPageParser(source,
                 productDetailPageTitleParser,
