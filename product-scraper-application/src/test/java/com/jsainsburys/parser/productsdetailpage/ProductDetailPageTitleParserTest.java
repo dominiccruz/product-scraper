@@ -22,8 +22,8 @@ public class ProductDetailPageTitleParserTest {
         String productTitleValue = "productTitleValue";
         Document mockDocument = mock(Document.class);
         Elements titleElements = mock(Elements.class);
-        when(titleElements.text()).thenReturn(productTitleValue);
         when(mockDocument.select(productDetailPageTitleSelector)).thenReturn(titleElements);
+        when(titleElements.text()).thenReturn(productTitleValue);
 
         //Act
         ProductDetailPageTitleParser productDetailPageTitleParser = new ProductDetailPageTitleParser(productDetailPageTitleSelector);

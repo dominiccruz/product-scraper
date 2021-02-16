@@ -15,14 +15,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Component
 public class ProductListPageParser extends JSoupParser {
 
     private final String productListPageSelector;
 
-    @Autowired
     public ProductListPageParser(Source source,
-                                 @Value("${product.list.page.selector}") String productListPageSelector) {
+                                 String productListPageSelector) {
         super(source);
         this.productListPageSelector = productListPageSelector;
     }
@@ -32,10 +30,9 @@ public class ProductListPageParser extends JSoupParser {
         Document productListPage = getDocument(url);
         Elements productUrlElements = productListPage.select(productListPageSelector);
 
-        List<String> productUrls = productUrlElements
+        return productUrlElements
                 .stream()
                 .map(productUrlElement -> productUrlElement.attr("href"))
                 .collect(Collectors.toList());
-        return productUrls;
     }
 }
