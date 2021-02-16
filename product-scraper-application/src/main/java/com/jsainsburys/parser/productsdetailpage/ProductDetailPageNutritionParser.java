@@ -21,10 +21,23 @@ public class ProductDetailPageNutritionParser {
         this.subSelectors = nutritionSubSelectors;
     }
 
-    public Optional<ProductNutrition> getProductNutrition(Document document) throws IOException {
+    public Optional<ProductNutrition> getProductNutrition(Document document) {
         Optional<ProductNutrition> productNutrition = Optional.empty();
 
+        Elements productNutritionElement = document.select(selector);
 
+        for (String subSelector : subSelectors) {
+            Elements nutritionElement = productNutritionElement.select(subSelector);
+            try {
+                String nutrition = nutritionElement.text().replace("kcal", "");
+                productNutrition = Optional.of(new ProductNutrition(nutrition));
+            } catch (NumberFormatException e) {
+                log.debug("Cannot create Product Nutrition for product using sub selector: " + subSelector, e);
+            }
+
+            if (productNutrition.isPresent())
+                break;
+        }
 
         return productNutrition;
     }
