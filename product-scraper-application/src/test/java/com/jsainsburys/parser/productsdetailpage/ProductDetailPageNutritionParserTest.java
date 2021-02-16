@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 public class ProductDetailPageNutritionParserTest {
 
     @Test
-    public void getProductNutrition_firstSelectorIsUsed() throws IOException {
+    public void getProductNutrition_firstSelectorIsUsed() {
         //Arrange
         String nutritionSelector = "selector";
 
@@ -50,7 +50,7 @@ public class ProductDetailPageNutritionParserTest {
     }
 
     @Test
-    public void getProductNutrition_secondSelectorIsUsedIfFirstDoesnotWork() throws IOException {
+    public void getProductNutrition_secondSelectorIsUsedIfFirstDoesnotWork() {
         //Arrange
         String nutritionSelector = "selector";
 
