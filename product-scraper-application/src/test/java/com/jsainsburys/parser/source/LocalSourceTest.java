@@ -1,7 +1,7 @@
 package com.jsainsburys.parser.source;
 
 import org.jsoup.nodes.Document;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.IOException;
 
