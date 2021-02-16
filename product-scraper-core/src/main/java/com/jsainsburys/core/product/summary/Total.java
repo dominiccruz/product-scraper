@@ -6,11 +6,11 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class Totals {
+public class Total {
     private Money gross;
     private Money vat;
 
-    public Totals(Money gross, Money vat) {
+    public Total(Money gross, Money vat) {
         this.gross = gross;
         this.vat = vat;
     }

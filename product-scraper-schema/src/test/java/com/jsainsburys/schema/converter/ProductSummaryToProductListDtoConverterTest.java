@@ -2,17 +2,13 @@ package com.jsainsburys.schema.converter;
 
 import com.jsainsburys.core.product.Product;
 import com.jsainsburys.core.product.detail.Money;
-import com.jsainsburys.core.product.detail.ProductDescription;
-import com.jsainsburys.core.product.detail.ProductNutrition;
-import com.jsainsburys.core.product.detail.ProductTitle;
 import com.jsainsburys.core.product.summary.ProductSummary;
-import com.jsainsburys.core.product.summary.Totals;
+import com.jsainsburys.core.product.summary.Total;
 import com.jsainsburys.schema.ProductDto;
 import com.jsainsburys.schema.ProductListDto;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +42,7 @@ public class ProductSummaryToProductListDtoConverterTest {
         verify(mockProductToProductDtoConverter, times(2)).convert(any(Product.class));
 
         ProductListDto productList = productListValues.get();
-        assertThat(productList.getTotal().getGross(), is(testProductSummary.getTotals().getGross().getValue()));
+        assertThat(productList.getTotal().getGross(), is(testProductSummary.getTotal().getGross().getValue()));
 
         List<ProductDto> results = productList.getResults();
         assertThat(results.size(), is(2));
@@ -85,28 +81,15 @@ public class ProductSummaryToProductListDtoConverterTest {
         assertThat(productListValues.isPresent(), is(false));
     }
 
-    private Product getTestProduct() {
-        ProductTitle productTitle = new ProductTitle("title");
-
-        BigDecimal price = BigDecimal.valueOf(10.30).setScale(2, RoundingMode.HALF_UP);
-        Money productPrice = new Money(price);
-
-        ProductDescription productDescription = new ProductDescription("description");
-
-        ProductNutrition productNutrition = new ProductNutrition("33");
-
-        return new Product(productTitle, productPrice, productDescription, productNutrition);
-    }
-
     private ProductSummary getTestProductSummary() {
         ArrayList<Product> productList = new ArrayList<>();
-        productList.add(getTestProduct());
-        productList.add(getTestProduct());
+        productList.add(mock(Product.class));
+        productList.add(mock(Product.class));
 
         return ProductSummary
                 .builder()
                 .products(productList)
-                .totals(Totals
+                .total(Total
                         .builder()
                         .gross(new Money(new BigDecimal("5.00")))
                         .vat(new Money(new BigDecimal("0.83")))

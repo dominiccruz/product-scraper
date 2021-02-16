@@ -11,11 +11,11 @@ import java.util.List;
 public class ProductSummary {
 
   private List<Product> products;
-  private Totals totals;
+  private Total total;
 
-  public ProductSummary(List<Product> products, Totals totals) {
+  public ProductSummary(List<Product> products, Total total) {
     this.products = products;
-    this.totals = totals;
+    this.total = total;
   }
 
 }

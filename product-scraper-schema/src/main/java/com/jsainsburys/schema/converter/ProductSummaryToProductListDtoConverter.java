@@ -26,7 +26,7 @@ public class ProductSummaryToProductListDtoConverter {
                     .map(result -> result.get())
                     .collect(Collectors.toList());
 
-            TotalDto totalDto = new TotalDto(productSummary.getTotals().getGross().getValue(), productSummary.getTotals().getVat().getValue());
+            TotalDto totalDto = new TotalDto(productSummary.getTotal().getGross().getValue(), productSummary.getTotal().getVat().getValue());
             productListDto = Optional.of(new ProductListDto(results, totalDto));
         }
         return productListDto;
