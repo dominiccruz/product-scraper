@@ -6,5 +6,5 @@ import java.io.IOException;
 
 public interface Source {
 
-  Document get(String url) throws IOException;
+    Document load(String url) throws IOException;
 }

@@ -12,15 +12,15 @@ import java.net.URL;
 @Component
 public class WebSource implements Source {
 
-  private final int timeout;
+    private final int timeout;
 
-  @Autowired
-  public WebSource(@Value("${timeout.value}") int timeout) {
-    this.timeout = timeout;
-  }
+    @Autowired
+    public WebSource(@Value("${timeout.value}") int timeout) {
+        this.timeout = timeout;
+    }
 
-  public Document get(String url) throws IOException {
-    return Jsoup.parse(new URL(url), timeout);
-  }
+    public Document load(String url) throws IOException {
+        return Jsoup.parse(new URL(url), timeout);
+    }
 
 }
