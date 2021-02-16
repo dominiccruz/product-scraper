@@ -1,6 +1,7 @@
 package com.jsainsburys.config;
 
 import com.jsainsburys.parser.productlist.ProductListPageParser;
+import com.jsainsburys.parser.productsdetailpage.ProductDetailPageDescriptionParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPageNutritionParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPageParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPagePriceParser;
@@ -29,6 +30,9 @@ public class Config {
     @Value("${product.detail.page.nutrition.selector}")
     String nutritionSelector;
 
+    @Value("${product.detail.page.description.selector}")
+    String descriptionSelector;
+
     @Bean
     public Source source(@Value("${timeout.value}") int timeOut){
         return new WebSource(timeOut);
@@ -50,6 +54,24 @@ public class Config {
     }
 
     @Bean
+    ProductDetailPageDescriptionParser productDetailPageDescriptionParser(List<String> descriptionSubSelectors) {
+        return new ProductDetailPageDescriptionParser(descriptionSelector, descriptionSubSelectors);
+    }
+
+    @Bean
+    public List<String> descriptionSubSelectors(@Value("${product.detail.page.description.sub.selector1}") String descriptionSubSelector1,
+                                                @Value("${product.detail.page.description.sub.selector2}") String descriptionSubSelector2,
+                                                @Value("${product.detail.page.description.sub.selector3}") String descriptionSubSelector3,
+                                                @Value("${product.detail.page.description.sub.selector4}") String descriptionSubSelector4) {
+        List<String> descriptionSubSelectors = new ArrayList<>();
+        descriptionSubSelectors.add(descriptionSubSelector1);
+        descriptionSubSelectors.add(descriptionSubSelector2);
+        descriptionSubSelectors.add(descriptionSubSelector3);
+        descriptionSubSelectors.add(descriptionSubSelector4);
+        return descriptionSubSelectors;
+    }
+
+    @Bean
     public List<String> nutritionSubSelectors(@Value("${product.detail.page.nutrition.sub.selector1}") String nutritionSubSelector1,
                                               @Value("${product.detail.page.nutrition.sub.selector2}") String nutritionSubSelector2) {
         List<String> nutritionSubSelectors = new ArrayList<>();
@@ -59,7 +81,7 @@ public class Config {
     }
 
     @Bean
-    public ProductDetailPageNutritionParser productDetailPageNutritionParser(List<String> nutritionSubSelectors){
+    public ProductDetailPageNutritionParser productDetailPageNutritionParser(List<String> nutritionSubSelectors) {
         return new ProductDetailPageNutritionParser(nutritionSelector, nutritionSubSelectors);
     }
 
@@ -67,8 +89,12 @@ public class Config {
     ProductDetailPageParser productDetailPageParser(Source source,
                                                     ProductDetailPageTitleParser productDetailPageTitleParser,
                                                     ProductDetailPagePriceParser productDetailPagePriceParser,
+                                                    ProductDetailPageDescriptionParser productDetailPageDescriptionParser,
                                                     ProductDetailPageNutritionParser productDetailPageNutritionParser) {
-        return new ProductDetailPageParser(source, productDetailPageTitleParser, productDetailPagePriceParser,
+        return new ProductDetailPageParser(source,
+                productDetailPageTitleParser,
+                productDetailPagePriceParser,
+                productDetailPageDescriptionParser,
                 productDetailPageNutritionParser);
     }
 }
