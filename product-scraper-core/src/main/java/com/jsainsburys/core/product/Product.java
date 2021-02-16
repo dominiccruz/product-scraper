@@ -4,19 +4,21 @@ import com.jsainsburys.core.product.detail.ProductDescription;
 import com.jsainsburys.core.product.detail.ProductNutrition;
 import com.jsainsburys.core.product.detail.Money;
 import com.jsainsburys.core.product.detail.ProductTitle;
+import lombok.Builder;
 
+@Builder
 public class Product {
     private final ProductTitle productTitle;
-    private final Money money;
+    private final Money productPrice;
     private final ProductDescription productDescription;
     private final ProductNutrition productNutrition;
 
     public Product(ProductTitle productTitle,
-                   Money money,
+                   Money productPrice,
                    ProductDescription productDescription,
                    ProductNutrition productNutrition) {
         this.productTitle = productTitle;
-        this.money = money;
+        this.productPrice = productPrice;
         this.productDescription = productDescription;
         this.productNutrition = productNutrition;
     }
@@ -26,7 +28,7 @@ public class Product {
     }
 
     public Money getProductPrice() {
-        return money;
+        return productPrice;
     }
 
     public ProductDescription getProductDescription() {
