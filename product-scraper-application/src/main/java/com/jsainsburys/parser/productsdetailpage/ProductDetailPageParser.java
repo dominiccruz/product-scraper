@@ -33,27 +33,36 @@ public class ProductDetailPageParser extends JSoupParser {
         this.productDetailPageNutritionParser = productDetailPageNutritionParser;
     }
 
-    public Product parse(String url) throws Exception {
-        Document document = getDocument(url);
-        Optional<ProductTitle> productTitle = productDetailPageTitleParser.getProductTitle(document);
-        Optional<Money> productPrice = productDetailPagePriceParser.getProductPrice(document);
-        Optional<ProductDescription> productDescription = productDetailPageDescriptionParser.getProductDescription(document);
-        Optional<ProductNutrition> productNutrition = productDetailPageNutritionParser.getProductNutrition(document);
-
-        if(!productTitle.isPresent()) {
-            log.info("Product Title is not available on url: " + url.toString());
-        }
-        if(!productPrice.isPresent()) {
-            log.info("Product Price is not available on url: " + url.toString());
-        }
-        if(!productDescription.isPresent()) {
-            log.info("Product Description is not available on url: " + url.toString());
-        }
-        if(!productNutrition.isPresent()) {
-            log.info("Product Nutrition is not available on url: " + url.toString());
+    public Optional<Product> parse(String url) {
+        Optional<Product> parsedProduct = Optional.empty();
+        Document document = null;
+        try {
+            document = getDocument(url);
+        } catch (IOException e) {
+            log.info("Returning empty as failed to get product on url:" + url);
         }
 
-        return new Product(productTitle.orElse(null), productPrice.orElse(null), productDescription.orElse(null), productNutrition.orElse(null));
+        if (document != null) {
+            Optional<ProductTitle> productTitle = productDetailPageTitleParser.getProductTitle(document);
+            Optional<Money> productPrice = productDetailPagePriceParser.getProductPrice(document);
+            Optional<ProductDescription> productDescription = productDetailPageDescriptionParser.getProductDescription(document);
+            Optional<ProductNutrition> productNutrition = productDetailPageNutritionParser.getProductNutrition(document);
+
+            if (!productTitle.isPresent()) {
+                log.info("Product Title is not available on url: " + url);
+            }
+            if (!productPrice.isPresent()) {
+                log.info("Product Price is not available on url: " + url);
+            }
+            if (!productDescription.isPresent()) {
+                log.info("Product Description is not available on url: " + url);
+            }
+            if (!productNutrition.isPresent()) {
+                log.info("Product Nutrition is not available on url: " + url);
+            }
+        }
+
+        return parsedProduct;
     }
 
 }
