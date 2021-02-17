@@ -55,20 +55,27 @@ Unit Tests are run as part of the build process
 
 i.e. mvn clean install
 
-### Integration tests
+### Unit and Integration tests
+This application has been developed using TDD,
+thus contains both unit and integration tests.
+
+Tests are run automatically at build time.
+To run tests only please run the following command:
+```
+mvn test
+```
+
 ScraperTest and ScraperServiceIntegrationTest require internet to run,
-with more time we could use wiremock so that tests can run without network.
+with more time we could use wiremock so that tests can run without an internet.
 
 ScraperTest tests the output by fetching the original url and asserting the configured string output
 
-ScraperServiceIntegrationTest fetches the original url but asserts that the correct productsummary has been generated.
+ScraperServiceIntegrationTest fetches the original url but asserts that the correct product summary has been generated.
 
 Other Integration tests use local resources.
 
 ### Modularity
-The application has been developed using TDD.
-
-The idea was to keep the core bits in its own module i.e. the bits required to full fill the requirements and to keep the problem space together.
+The core bits are in its own module i.e. the bits required to full fill the requirements and to keep the problem space together.
 
 The domain is designed such that it will not allow the user to create an invalid instance.
 
