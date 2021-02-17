@@ -82,3 +82,5 @@ An empty optional is returned if the product can't be parsed instead of throwing
 Create a Total Service Interface so that multiple implementation can be done to calculate the total and VAT.
 
 Use Mock Server in tests rather than connect to internet.
+
+The configuration for circleCI has been added, but not tested against a circle CI instance.
