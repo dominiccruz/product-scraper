@@ -9,6 +9,11 @@ import com.jsainsburys.parser.productsdetailpage.ProductDetailPagePriceParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPageTitleParser;
 import com.jsainsburys.parser.source.Source;
 import com.jsainsburys.parser.source.WebSource;
+import com.jsainsburys.schema.converter.ProductSummaryToProductListDtoConverter;
+import com.jsainsburys.schema.converter.ProductToProductDtoConverter;
+import com.jsainsburys.service.ScraperService;
+import com.jsainsburys.service.TotalService;
+import com.jsainsburys.standalone.Scraper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-public class Config {
+public class ProductScraperServiceConfiguration {
 
     @Value("${product.list.page.selector}")
     String listPageSelector;
@@ -35,22 +40,22 @@ public class Config {
     String descriptionSelector;
 
     @Bean
-    public Source source(@Value("${timeout.value}") int timeOut){
+    public Source source(@Value("${timeout.value}") int timeOut) {
         return new WebSource(timeOut);
     }
 
     @Bean
-    ProductListPageParser productListPageParser(Source source){
+    ProductListPageParser productListPageParser(Source source) {
         return new ProductListPageParser(source, listPageSelector);
     }
 
     @Bean
-    ProductDetailPageTitleParser productDetailPageTitleParser(Source source){
+    ProductDetailPageTitleParser productDetailPageTitleParser(Source source) {
         return new ProductDetailPageTitleParser(titleSelector);
     }
 
     @Bean
-    ProductDetailPagePriceParser productDetailPagePriceParser(){
+    ProductDetailPagePriceParser productDetailPagePriceParser() {
         return new ProductDetailPagePriceParser(priceSelector);
     }
 
@@ -87,7 +92,7 @@ public class Config {
     }
 
     @Bean
-    ProductFactory productFactory(){
+    ProductFactory productFactory() {
         return new ProductFactory();
     }
 
@@ -104,5 +109,32 @@ public class Config {
                 productDetailPageDescriptionParser,
                 productDetailPageNutritionParser,
                 productFactory);
+    }
+
+    @Bean
+    ScraperService scraperService(ProductListPageParser productListPageParser,
+                                  ProductDetailPageParser productDetailPageParser,
+                                  TotalService totalService) {
+        return new ScraperService(productListPageParser, productDetailPageParser, totalService);
+    }
+
+    @Bean
+    TotalService totalService() {
+        return new TotalService();
+    }
+
+    @Bean
+    ProductToProductDtoConverter productToProductDtoConverter() {
+        return new ProductToProductDtoConverter();
+    }
+
+    @Bean
+    ProductSummaryToProductListDtoConverter productSummaryToProductListDtoConverter(ProductToProductDtoConverter productToProductDtoConverter) {
+        return new ProductSummaryToProductListDtoConverter(productToProductDtoConverter);
+    }
+
+    @Bean
+    Scraper scraper(ScraperService scraperService, ProductSummaryToProductListDtoConverter productSummaryToProductListDtoConverter) {
+        return new Scraper(scraperService, productSummaryToProductListDtoConverter);
     }
 }

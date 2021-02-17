@@ -7,6 +7,7 @@ import com.jsainsburys.parser.productlist.ProductListPageParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPageParser;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,7 +28,7 @@ public class ScraperService {
         this.totalService = totalService;
     }
 
-    public ProductSummary scrape(String url) throws Exception {
+    public ProductSummary scrape(String url) throws IOException {
         List<String> productUrls = productListPageParser.parse(url);
 
         List<Product> products = productUrls.stream()
