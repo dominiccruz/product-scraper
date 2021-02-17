@@ -14,22 +14,6 @@ import static org.mockito.Mockito.verifyNoInteractions;
 
 public class ProductListPageParserTest {
 
-    private static final String productListUrl = "testData/sainsbury/productList.html";
-    private static final String productListPageSelector = "#main ul.productLister a[href]";
-
-    @Test
-    public void scrapeWebPage_valid() throws Exception {
-        //Arrange
-        Source source = new LocalSource();
-        ProductListPageParser productListPageParser = new ProductListPageParser(source, productListPageSelector);
-
-        //Act
-        List<String> parse = productListPageParser.parse(productListUrl);
-
-        //Assert
-        assertThat(parse.size(), is(14));
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void throwException_ifUrlNull() throws Exception {
         //Arrange
