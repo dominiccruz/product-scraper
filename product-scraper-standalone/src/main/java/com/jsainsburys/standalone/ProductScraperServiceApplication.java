@@ -1,4 +1,4 @@
-package com.jsainsburys;
+package com.jsainsburys.standalone;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

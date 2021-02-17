@@ -1,4 +1,4 @@
-package com.jsainsburys.config;
+package com.jsainsburys.standalone.config;
 
 import com.jsainsburys.core.product.factory.ProductFactory;
 import com.jsainsburys.parser.productlist.ProductListPageParser;
