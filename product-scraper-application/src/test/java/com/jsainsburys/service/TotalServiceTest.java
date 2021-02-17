@@ -23,8 +23,8 @@ public class TotalServiceTest {
 
         Total total = totalService.getTotal(getTestProducts());
 
-        assertEquals(total.getGross(), expectedGross);
-        assertEquals(total.getVat(), expectedVat);
+        assertEquals(total.getGross().getValue(), expectedGross.getValue());
+        assertEquals(total.getVat().getValue(), expectedVat.getValue());
     }
 
     private List<Product> getTestProducts() {
