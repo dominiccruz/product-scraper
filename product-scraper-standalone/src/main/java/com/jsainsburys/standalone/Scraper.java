@@ -32,6 +32,8 @@ public class Scraper {
             if (productList.isPresent()) {
                 ObjectMapper objectMapper = new ObjectMapper();
                 productJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(productList.get());
+            } else {
+                log.info("No Products Found");
             }
         } catch (MalformedURLException e) {
             log.error("Invalid url found during processing. Stopping application.", e);
