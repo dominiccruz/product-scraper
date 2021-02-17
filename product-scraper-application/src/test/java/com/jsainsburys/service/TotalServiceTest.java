@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,11 +18,22 @@ public class TotalServiceTest {
     TotalService totalService = new TotalService();
 
     @Test
-    public void calculateTotal() {
+    public void returnCorrectTotal_ifProductsAvailable() {
         Money expectedVat = new Money(new BigDecimal("0.83"));
         Money expectedGross = new Money(new BigDecimal("5.00"));
 
-        Total total = totalService.getTotal(getTestProducts());
+        Total total = totalService.calculateTotal(getTestProducts());
+
+        assertEquals(total.getGross().getValue(), expectedGross.getValue());
+        assertEquals(total.getVat().getValue(), expectedVat.getValue());
+    }
+
+    @Test
+    public void returnZero_ifEmptyProductList() {
+        Money expectedVat = new Money(new BigDecimal("0"));
+        Money expectedGross = new Money(new BigDecimal("0"));
+
+        Total total = totalService.calculateTotal(new ArrayList<>());
 
         assertEquals(total.getGross().getValue(), expectedGross.getValue());
         assertEquals(total.getVat().getValue(), expectedVat.getValue());

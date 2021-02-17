@@ -14,7 +14,7 @@ public class TotalService {
 
     private BigDecimal vat = BigDecimal.valueOf(6);
 
-    public Total getTotal(List<Product> products) {
+    public Total calculateTotal(List<Product> products) {
         Money grossTotal = getGrossTotal(products);
         Money vat = getVat(grossTotal);
 
