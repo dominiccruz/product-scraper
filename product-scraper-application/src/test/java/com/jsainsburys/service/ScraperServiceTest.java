@@ -44,7 +44,7 @@ public class ScraperServiceTest {
 
         //Assert
         assertThat(productSummary.getProducts().size(), is(2));
-        assertEquals(productSummary.getProducts(), is(parsedProducts));
+        assertEquals(productSummary.getProducts(), parsedProducts);
 
         Total parsedTotal = productSummary.getTotal();
         assertThat(parsedTotal, is(total));
