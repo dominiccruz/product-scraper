@@ -17,7 +17,7 @@ public class ProductNutrition {
      *
      * @param nutrition
      */
-    public ProductNutrition(String nutrition) {
+    public ProductNutrition(String nutrition) throws NumberFormatException {
         this.nutrition = Integer.parseInt(nutrition);
     }
 

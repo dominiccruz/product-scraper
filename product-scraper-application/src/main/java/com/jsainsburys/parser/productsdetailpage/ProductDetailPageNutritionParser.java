@@ -32,7 +32,7 @@ public class ProductDetailPageNutritionParser {
                 String nutrition = nutritionElement.text().replace("kcal", "");
                 productNutrition = Optional.of(new ProductNutrition(nutrition));
             } catch (NumberFormatException e) {
-                log.debug("Cannot create Product Nutrition for product using sub selector: " + subSelector, e);
+                log.debug("Cannot create Product Nutrition for product using sub selector: " + subSelector);
             }
 
             if (productNutrition.isPresent())
