@@ -31,7 +31,7 @@ public class ProductDetailPageDescriptionParser {
                 ProductDescription description = new ProductDescription(descriptionElement.text());
                 productDescription = Optional.of(description);
             } catch (IllegalArgumentException e) {
-                log.debug("Cannot create Product Description for product using sub selector: " + subSelector, e);
+                log.debug("Cannot create Product Description for product using sub selector: " + subSelector);
             }
 
             if(productDescription.isPresent())

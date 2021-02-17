@@ -1,7 +1,6 @@
-package com.jsainsburys.parser.productsdetailpage.config;
+package com.jsainsburys.config;
 
 import com.jsainsburys.core.product.factory.ProductFactory;
-import com.jsainsburys.parser.productlist.ProductListPageParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPageDescriptionParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPageNutritionParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPageParser;
@@ -9,18 +8,15 @@ import com.jsainsburys.parser.productsdetailpage.ProductDetailPagePriceParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPageTitleParser;
 import com.jsainsburys.parser.source.LocalSource;
 import com.jsainsburys.parser.source.Source;
-import com.jsainsburys.parser.source.WebSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @TestConfiguration
-public class ParserConfig {
+public class ProductDetailPageConfig {
 
     @Value("${product.detail.page.price.selector}")
     String priceSelector;
