@@ -21,17 +21,20 @@ public class ProductDetailPageParser extends JSoupParser {
     private final ProductDetailPagePriceParser productDetailPagePriceParser;
     private final ProductDetailPageDescriptionParser productDetailPageDescriptionParser;
     private final ProductDetailPageNutritionParser productDetailPageNutritionParser;
+    private ProductFactory productFactory;
 
     public ProductDetailPageParser(Source source,
                                    ProductDetailPageTitleParser productDetailPageTitleParser,
                                    ProductDetailPagePriceParser productDetailPagePriceParser,
                                    ProductDetailPageDescriptionParser productDetailPageDescriptionParser,
-                                   ProductDetailPageNutritionParser productDetailPageNutritionParser, ProductFactory productFactory) {
+                                   ProductDetailPageNutritionParser productDetailPageNutritionParser,
+                                   ProductFactory productFactory) {
         super(source);
         this.productDetailPageTitleParser = productDetailPageTitleParser;
         this.productDetailPagePriceParser = productDetailPagePriceParser;
         this.productDetailPageDescriptionParser = productDetailPageDescriptionParser;
         this.productDetailPageNutritionParser = productDetailPageNutritionParser;
+        this.productFactory = productFactory;
     }
 
     public Optional<Product> parse(String url) {
@@ -61,6 +64,8 @@ public class ProductDetailPageParser extends JSoupParser {
             if (productNutrition.isEmpty()) {
                 log.info("Product Nutrition is not available on url: " + url);
             }
+
+            parsedProduct = productFactory.createProduct(productTitle.orElse(null), productPrice.orElse(null), productDescription.orElse(null), productNutrition.orElse(null));
         }
 
         return parsedProduct;

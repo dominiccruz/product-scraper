@@ -1,5 +1,6 @@
 package com.jsainsburys.config;
 
+import com.jsainsburys.core.product.factory.ProductFactory;
 import com.jsainsburys.parser.productlist.ProductListPageParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPageDescriptionParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPageNutritionParser;
@@ -86,15 +87,22 @@ public class Config {
     }
 
     @Bean
+    ProductFactory productFactory(){
+        return new ProductFactory();
+    }
+
+    @Bean
     ProductDetailPageParser productDetailPageParser(Source source,
                                                     ProductDetailPageTitleParser productDetailPageTitleParser,
                                                     ProductDetailPagePriceParser productDetailPagePriceParser,
                                                     ProductDetailPageDescriptionParser productDetailPageDescriptionParser,
-                                                    ProductDetailPageNutritionParser productDetailPageNutritionParser) {
+                                                    ProductDetailPageNutritionParser productDetailPageNutritionParser,
+                                                    ProductFactory productFactory) {
         return new ProductDetailPageParser(source,
                 productDetailPageTitleParser,
                 productDetailPagePriceParser,
                 productDetailPageDescriptionParser,
-                productDetailPageNutritionParser);
+                productDetailPageNutritionParser,
+                productFactory);
     }
 }
