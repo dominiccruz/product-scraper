@@ -5,6 +5,7 @@ import com.jsainsburys.core.product.detail.Money;
 import com.jsainsburys.core.product.detail.ProductDescription;
 import com.jsainsburys.core.product.detail.ProductNutrition;
 import com.jsainsburys.core.product.detail.ProductTitle;
+import com.jsainsburys.core.product.factory.ProductFactory;
 import com.jsainsburys.parser.JSoupParser;
 import com.jsainsburys.parser.source.Source;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +26,7 @@ public class ProductDetailPageParser extends JSoupParser {
                                    ProductDetailPageTitleParser productDetailPageTitleParser,
                                    ProductDetailPagePriceParser productDetailPagePriceParser,
                                    ProductDetailPageDescriptionParser productDetailPageDescriptionParser,
-                                   ProductDetailPageNutritionParser productDetailPageNutritionParser) {
+                                   ProductDetailPageNutritionParser productDetailPageNutritionParser, ProductFactory productFactory) {
         super(source);
         this.productDetailPageTitleParser = productDetailPageTitleParser;
         this.productDetailPagePriceParser = productDetailPagePriceParser;
@@ -48,16 +49,16 @@ public class ProductDetailPageParser extends JSoupParser {
             Optional<ProductDescription> productDescription = productDetailPageDescriptionParser.getProductDescription(document);
             Optional<ProductNutrition> productNutrition = productDetailPageNutritionParser.getProductNutrition(document);
 
-            if (!productTitle.isPresent()) {
+            if (productTitle.isEmpty()) {
                 log.info("Product Title is not available on url: " + url);
             }
-            if (!productPrice.isPresent()) {
+            if (productPrice.isEmpty()) {
                 log.info("Product Price is not available on url: " + url);
             }
-            if (!productDescription.isPresent()) {
+            if (productDescription.isEmpty()) {
                 log.info("Product Description is not available on url: " + url);
             }
-            if (!productNutrition.isPresent()) {
+            if (productNutrition.isEmpty()) {
                 log.info("Product Nutrition is not available on url: " + url);
             }
         }
