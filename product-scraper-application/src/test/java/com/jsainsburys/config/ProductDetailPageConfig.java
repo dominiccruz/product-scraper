@@ -6,7 +6,6 @@ import com.jsainsburys.parser.productsdetailpage.ProductDetailPageNutritionParse
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPageParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPagePriceParser;
 import com.jsainsburys.parser.productsdetailpage.ProductDetailPageTitleParser;
-import com.jsainsburys.parser.source.LocalSource;
 import com.jsainsburys.parser.source.Source;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -31,12 +30,7 @@ public class ProductDetailPageConfig {
     String descriptionSelector;
 
     @Bean
-    public Source source(){
-        return new LocalSource();
-    }
-
-    @Bean
-    ProductDetailPageTitleParser productDetailPageTitleParser(Source source){
+    ProductDetailPageTitleParser productDetailPageTitleParser(){
         return new ProductDetailPageTitleParser(titleSelector);
     }
 

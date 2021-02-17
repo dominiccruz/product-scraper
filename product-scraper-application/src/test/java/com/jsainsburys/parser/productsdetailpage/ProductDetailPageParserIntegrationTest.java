@@ -1,5 +1,6 @@
 package com.jsainsburys.parser.productsdetailpage;
 
+import com.jsainsburys.config.LocalSourceConfig;
 import com.jsainsburys.config.ProductDetailPageConfig;
 import com.jsainsburys.core.product.Product;
 import org.junit.Test;
@@ -17,7 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 
-@Import(ProductDetailPageConfig.class)
+@Import({ProductDetailPageConfig.class, LocalSourceConfig.class})
 @RunWith(SpringRunner.class)
 @TestPropertySource(locations="classpath:application-it.properties")
 public class ProductDetailPageParserIntegrationTest {
